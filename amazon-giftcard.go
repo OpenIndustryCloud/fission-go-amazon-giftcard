@@ -209,8 +209,6 @@ func getAPIKeys(w http.ResponseWriter) {
 
 	awsSecretKey = string(secret.Data["awsSecretKey"])
 	awsSecretKey = strings.Replace(awsSecretKey, "\n", "", -1)
-	//awsKeyID = "AKIAILRAHUK2LV3FRKRA" // Your KeyID
-	//awsSecretKey = "lR9q9le9/h69t/9ByrbrWdmcjYKTCPryXurWyJHC" // Your Key
 
 	println(awsKeyID + " || " + awsSecretKey)
 
