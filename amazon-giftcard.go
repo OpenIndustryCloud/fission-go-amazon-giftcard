@@ -64,11 +64,11 @@ var (
 	//Payload parameters
 	partnerID  = "Legen"
 	requestID  = partnerID + "B5ta"
-	cardNumber = "1111111111111111"
+	cardNumber = ""
 
 	//Additional payload parameters for ActivateGiftCard
 	currencyCode = "GBP"
-	amount       = "1.00" //default
+	amount       = "" //default
 
 	//Additional payload parameters for CancelGiftCard
 	gcId = ""
@@ -128,7 +128,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//get API keys
-	//getAPIKeys(w)
+	getAPIKeys(w)
 
 	println("Create Gift Card for - ", inputData.Amount)
 	strAmount := strconv.Itoa(inputData.Amount)
@@ -204,10 +204,10 @@ func getAPIKeys(w http.ResponseWriter) {
 	secret, err := clientset.Core().Secrets(namespace).Get(secretName, meta_v1.GetOptions{})
 	//endPointFromENV := os.Getenv("ENV_HELPDESK_API_EP")
 	awsKeyID = string(secret.Data["awsKeyID"])
-	awsKeyID = strings.Replace(awsKeyID, "\n", "<br>", -1)
+	awsKeyID = strings.Replace(awsKeyID, "\n", "", -1)
 
 	awsSecretKey = string(secret.Data["awsSecretKey"])
-	println(awsKeyID)
+	println(awsKeyID + awsSecretKey)
 	// if len(endPointFromENV) > 0 {
 	// 	log.Print("[CONFIG] Setting Env variables", endPointFromENV)
 	// 	endPoint = endPointFromENV
