@@ -51,8 +51,8 @@ var (
 	TERMINATION_STRING    = "aws4_request"
 
 	//User and instance parameters
-	awsKeyID     = "AKIAILRAHUK2LV3FRKRA"                     // Your KeyID
-	awsSecretKey = "lR9q9le9/h69t/9ByrbrWdmcjYKTCPryXurWyJHC" // Your Key
+	awsKeyID     = "" // Your KeyID
+	awsSecretKey = "" // Your Key
 	namespace    = "default"
 	secretName   = "agcod-secret"
 
