@@ -141,6 +141,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	payLoadString := populatePayload(strAmount)
 
 	// Get auth from env vars, pass explictly
+	println(awsKeyID + " || " + awsSecretKey)
 	auth, err := aws.GetAuth(awsKeyID, awsSecretKey, "", time.Time{})
 	if err != nil {
 		fmt.Println(err)
@@ -202,16 +203,17 @@ func getAPIKeys(w http.ResponseWriter) {
 	}
 
 	secret, err := clientset.Core().Secrets(namespace).Get(secretName, meta_v1.GetOptions{})
-	//endPointFromENV := os.Getenv("ENV_HELPDESK_API_EP")
+
 	awsKeyID = string(secret.Data["awsKeyID"])
 	awsKeyID = strings.Replace(awsKeyID, "\n", "", -1)
 
 	awsSecretKey = string(secret.Data["awsSecretKey"])
-	println(awsKeyID + awsSecretKey)
-	// if len(endPointFromENV) > 0 {
-	// 	log.Print("[CONFIG] Setting Env variables", endPointFromENV)
-	// 	endPoint = endPointFromENV
-	// }
+	awsSecretKey = strings.Replace(awsSecretKey, "\n", "", -1)
+	//awsKeyID = "AKIAILRAHUK2LV3FRKRA" // Your KeyID
+	//awsSecretKey = "lR9q9le9/h69t/9ByrbrWdmcjYKTCPryXurWyJHC" // Your Key
+
+	println(awsKeyID + " || " + awsSecretKey)
+
 	if len(awsKeyID) == 0 {
 		createErrorResponse(w, "Missing API Key", http.StatusBadRequest)
 	}
