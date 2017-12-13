@@ -43,8 +43,8 @@ Empty Payload or malformed JSON would result in error reponse.
             "currencyCode": "GBP"
         }
     },
-    "creationRequestId": "LegenB5ta751",
-    "gcClaimCode": "UV5W-RP2QMV-49W7",
+    "creationRequestId": "XXXXXXXX",
+    "gcClaimCode": "XXXX-XXXXXX-XXXX",
     "gcExpirationDate": "Tue Dec 07 23:59:59 UTC 2027",
     "gcId": "A3NIVER1GCA0E2",
     "status": "SUCCESS"
@@ -57,7 +57,7 @@ if amount is not valid
     "agcodResponse": {
         "__type": "CreateGiftCardResponse:http://internal.amazon.com/coral/com.amazonaws.agcod/",
         "cardInfo": null,
-        "creationRequestId": "LegenB5ta7-51",
+        "creationRequestId": "XXXXXXXX",
         "gcClaimCode": null,
         "gcExpirationDate": null,
         "gcId": null,
