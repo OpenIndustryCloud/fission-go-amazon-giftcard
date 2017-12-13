@@ -63,7 +63,7 @@ var (
 
 	//Payload parameters
 	partnerID  = "Legen"
-	requestID  = partnerID + "B5ta"
+	requestID  = ""
 	cardNumber = ""
 
 	//Additional payload parameters for ActivateGiftCard
@@ -122,6 +122,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	//Initialize whole payload in the specified format for the given operation and set additional headers based on these settings
 	var inputData InputData
+	requestID = ""
 	err := json.NewDecoder(r.Body).Decode(&inputData)
 	if err == io.EOF || err != nil {
 		createErrorResponse(w, err.Error(), http.StatusBadRequest)
@@ -135,9 +136,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	//Dynamic request ID -
 	rGen := rand.New(rand.NewSource(99))
-	randomNum := rGen.Intn(1000)
+	randomNum := rGen.Intn(10)
 
-	requestID = requestID + strconv.Itoa(randomNum) + strAmount
+	requestID = partnerID + "B5ta" + strconv.Itoa(randomNum) + strAmount
 	payLoadString := populatePayload(strAmount)
 
 	// Get auth from env vars, pass explictly
@@ -188,6 +189,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// getAPIKeys - this funtion read kubernetes secrets for configured
+// namespace and secret name
 func getAPIKeys(w http.ResponseWriter) {
 	println("[CONFIG] Reading Env variables")
 
